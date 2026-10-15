@@ -1,0 +1,6 @@
+sdk.dir=/path/to/your/Android/Sdk
+JARVIS_API_BASE_URL=https://your-api-service.up.railway.app
+# These are Firebase client configuration values (not server credentials). Firebase Auth anonymous sign-in must be enabled.
+FIREBASE_API_KEY=
+FIREBASE_APPLICATION_ID=
+FIREBASE_PROJECT_ID=

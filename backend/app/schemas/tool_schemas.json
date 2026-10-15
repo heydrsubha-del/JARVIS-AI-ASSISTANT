@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Strict payload schemas mirrored by the LiveKit agent function tools. Every function returns {ok,data,error}.",
+  "tools": [
+    {"name":"get_sensor_state","description":"Read a Home Assistant sensor or binary sensor explicitly listed in HA_READONLY_ENTITY_IDS.","parameters":{"type":"object","properties":{"entity_id":{"type":"string","pattern":"^(sensor|binary_sensor)\\.[a-z0-9_]+$"}},"required":["entity_id"],"additionalProperties":false}},
+    {"name":"set_light_power_tool","description":"Turn an allowlisted light on or off.","parameters":{"type":"object","properties":{"entity_id":{"type":"string","pattern":"^light\\.[a-z0-9_]+$"},"on":{"type":"boolean"}},"required":["entity_id","on"],"additionalProperties":false}},
+    {"name":"set_light_brightness_tool","description":"Set an allowlisted light brightness.","parameters":{"type":"object","properties":{"entity_id":{"type":"string","pattern":"^light\\.[a-z0-9_]+$"},"brightness":{"type":"integer","minimum":1,"maximum":255}},"required":["entity_id","brightness"],"additionalProperties":false}},
+    {"name":"set_light_color_tool","description":"Set an allowlisted light RGB color.","parameters":{"type":"object","properties":{"entity_id":{"type":"string","pattern":"^light\\.[a-z0-9_]+$"},"red":{"type":"integer","minimum":0,"maximum":255},"green":{"type":"integer","minimum":0,"maximum":255},"blue":{"type":"integer","minimum":0,"maximum":255}},"required":["entity_id","red","green","blue"],"additionalProperties":false}},
+    {"name":"set_smart_plug_power_tool","description":"Turn an allowlisted smart plug on or off.","parameters":{"type":"object","properties":{"entity_id":{"type":"string","pattern":"^switch\\.[a-z0-9_]+$"},"on":{"type":"boolean"}},"required":["entity_id","on"],"additionalProperties":false}},
+    {"name":"request_run_automation","description":"Create an in-app confirmation request for an allowlisted Home Assistant automation. Never executes immediately.","parameters":{"type":"object","properties":{"automation_id":{"type":"string","pattern":"^automation\\.[a-z0-9_]+$"}},"required":["automation_id"],"additionalProperties":false}}
+  ],
+  "tool_result_schema":{"type":"object","properties":{"ok":{"type":"boolean"},"data":{"type":["object","array","string","null"]},"error":{"type":["object","null"],"properties":{"code":{"type":"string"},"message":{"type":"string"}},"required":["code","message"],"additionalProperties":false}},"required":["ok","data","error"],"additionalProperties":false}
+}
